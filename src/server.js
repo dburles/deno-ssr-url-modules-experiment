@@ -22,7 +22,7 @@ function html ({ script, body }) {
 </html>`;
 }
 
-async function serve_file(filename) {
+async function serve_file (filename) {
   const file = await open(filename);
   const file_info = await stat(filename);
   const headers = new Headers();
@@ -36,8 +36,8 @@ async function serve_file(filename) {
   return res;
 }
 
-function resolve_file(url) {
-  return cwd() + url;
+function resolve_file (url) {
+  return cwd() + '/src/' + url;
 }
 
 const host = 'localhost';
