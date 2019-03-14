@@ -1,8 +1,14 @@
 import add1 from './lib/add1.js';
+import render from './lib/render.js';
+import button from './button_one.js';
+
+let count = 0;
 
 function mount () {
   const counterClickHandler = async function () {
-    document.getElementById('counter').innerText = await add1(Number(document.getElementById('counter').innerText));
+    // count = await add1(count);
+    count += 1;
+    render(button({ count }));
   };
   const nextClickHandler = async function () {
     const { navigate } = await import('./lib/router/router-client.js');
