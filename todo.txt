@@ -1,0 +1,9 @@
+// todo
+- universal router (waiting on https://github.com/denoland/deno/issues/1789)
+- server rendered async data loading
+- serve assets ✔
+
+// later
+- eslint/prettier
+- deno environment variables?
+- minification
