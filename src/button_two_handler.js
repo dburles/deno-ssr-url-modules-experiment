@@ -1,21 +1,36 @@
-import add1 from './lib/add1.js';
+import create_handler from './lib/main.js';
+import button from './button_two.js';
 
-function mount () {
-  const counterClickHandler = async function () {
-    document.getElementById('counter').innerText = await add1(Number(document.getElementById('counter').innerText));
+export default create_handler(button, function ({ render, navigate }) {
+  console.log('create_handler 2');
+  let count = 0;
+
+  async function counter_click_handler () {
+    console.log('counter_click_handler 2');
+    count += 1;
+    render({ count });
   };
-  const nextClickHandler = async function () {
-    const { navigate } = await import('./lib/router/router-client.js');
+  async function next_click_handler () {
     navigate('/');
   };
 
-  document.getElementById('counter').addEventListener('click', counterClickHandler);
-  document.getElementById('next').addEventListener('click', nextClickHandler);
+  return function mount () {
+    console.log('mount 2');
 
-  return function unmount () {
-    document.getElementById('counter').removeEventListener('click', counterClickHandler);
-    document.getElementById('next').removeEventListener('click', nextClickHandler);
-  };
-}
+    const elements = {
+      counter: document.getElementById('counter'),
+      next: document.getElementById('next')
+    };
 
-export default mount;
+    console.log(elements);
+
+    elements.counter.addEventListener('click', counter_click_handler);
+    elements.next.addEventListener('click', next_click_handler);
+    
+    return function unmount () {
+      console.log('unmount 2');
+      elements.counter.removeEventListener('click', counter_click_handler);
+      elements.next.removeEventListener('click', next_click_handler);
+    }
+  }
+});

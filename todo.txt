@@ -7,3 +7,13 @@
 - eslint/prettier
 - deno environment variables?
 - minification
+
+// missing pieces
+- !!! react does not work when importing via url as a module
+- react does not properly support server side rendering
+
+// notes
+
+conventions:
+  my_component.js
+  my_component_handlers.js ← optional (client only) for attaching DOM event handlers.
