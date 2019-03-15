@@ -3,7 +3,7 @@ import { contentType } from 'https://deno.land/std/media_types/mod.ts';
 import { extname } from 'https://deno.land/std/fs/path.ts';
 const { stat, open, cwd } = Deno;
 import router from './lib/router/router.js';
-import routes from './routes-server.js';
+import routes from './routes_server.js';
 
 function html ({ script, body, hydrate }) {
   return `<!DOCTYPE html>
