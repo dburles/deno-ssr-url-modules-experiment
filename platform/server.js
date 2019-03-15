@@ -46,7 +46,7 @@ const host = 'localhost';
 const port = 3000;
 const s = serve(`${host}:${port}`);
 
-async function main({ routes }) {
+async function server({ routes }) {
   console.log(`Server running on http://${host}:${port}`);
   
   const get_route = router(routes);
@@ -94,4 +94,4 @@ async function main({ routes }) {
   }
 }
 
-export default main;
+export default server;
