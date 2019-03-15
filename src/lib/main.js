@@ -54,8 +54,10 @@ function create_handler (view, func) {
       console.log('called render for ', view.name, props);
       // const { default: view } = await import(module_name);
       unmount(); // Unmount.
-      document.getElementById('root').innerHTML = view({ ...props, ...new_props });
+      const updated_props = { ...props, ...new_props };
+      document.getElementById('root').innerHTML = view(updated_props);
       unmount = mount(); // Mount new event handlers.
+      props = updated_props;
     }
     // being explicit here for clarity.
     return { mount, render };
