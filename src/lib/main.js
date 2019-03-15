@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   console.log('DOMContentLoaded', { hydrate });
 });
 
+// Watch for route change events.
 subscribe(async function ({ path, params }) {
   console.log('route', { path, params });
   const route = get_route(path);
@@ -44,6 +45,7 @@ subscribe(async function ({ path, params }) {
   handler.render(props);
 });
 
+// A function used by pages to attach and handle events.
 function create_handler (view, func) {
   return async function handler () {
     const { navigate } = await import('./router/router-client.js');
