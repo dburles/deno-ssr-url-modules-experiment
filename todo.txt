@@ -4,6 +4,7 @@
 - serve assets ✔
 
 // later
+- server rendered lit-html
 - eslint/prettier
 - deno environment variables?
 - minification
