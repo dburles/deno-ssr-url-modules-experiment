@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   document.querySelector('body').addEventListener('click', function (e) {
     var anchor = e.target.closest('a');
     if (anchor !== null && anchor.host === window.location.host) {
+      e.preventDefault();
       navigate(anchor.getAttribute('href'));
     }
   }, false);
