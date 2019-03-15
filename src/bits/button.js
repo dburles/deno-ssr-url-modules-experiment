@@ -1,6 +1,6 @@
-function button ({ id, name }) {
+function button ({ id }, children) {
   return `
-    <button id="${id}">${name}</button>
+    <button id="${id}">${children}</button>
   `;
 }
 

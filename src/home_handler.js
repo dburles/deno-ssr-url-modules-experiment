@@ -1,8 +1,8 @@
 import create_handler from './lib/main.js';
-import button from './button_one.js';
-import button_one_data from './button_one_data.js';
+import home from './home.js';
+import home_data from './home_data.js';
 
-export default create_handler(button, function ({ render, navigate }) {
+export default create_handler(home, function ({ render }) {
   console.log('create_handler');
   let count = 0;
 
@@ -11,11 +11,8 @@ export default create_handler(button, function ({ render, navigate }) {
     count += 1;
     render({ count });
   };
-  // async function next_click_handler () {
-  //   navigate('/button');
-  // };
   async function refetch_click_handler () {
-    render({ data: await button_one_data() });
+    render({ data: await home_data() });
   }
 
   return function mount () {
@@ -23,31 +20,9 @@ export default create_handler(button, function ({ render, navigate }) {
 
     document.getElementById('counter').addEventListener('click', counter_click_handler);
     document.getElementById('refetch').addEventListener('click', refetch_click_handler);
-    // document.getElementById('next').addEventListener('click', next_click_handler);
     
     return function unmount () {
       console.log('unmount');
     }
   }
 });
-
-// initial mount
-// (
-//   state etc
-
-//   render/re-render (called both on mount, and re-render)
-//   (
-//     (
-//       setup when mount
-//     )
-//     unmount
-//     (
-//       remove when unmount
-//     )
-//   )
-
-//   unmount (called on route)
-//   (
-//     remove when unmount
-//   )
-// )
