@@ -36,7 +36,9 @@ subscribe(async function ({ path, params }) {
   // Dynamically import and render based on route.
   const { default: view } = await import(`${route.module_name}.js`);
   const { default: handler_factory } = await import(`${route.module_name}_handler.js`);
-  // TODO: if there is data for this route, it's passed in via the route.
+  // TODO:
+  // If there is data for this route, it's passed in via the route.
+  // Rather than assuming each page has a _data.js.
   const { default: data } = await import(`${route.module_name}_data.js`);
   const handler = await handler_factory();
   props = { // Render into view.
