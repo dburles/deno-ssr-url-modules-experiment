@@ -33,7 +33,6 @@ function client ({ routes }) {
     console.log('route', { path, params });
     const route = get_route(path);
 // Dynamically import and render based on route.
-    const { default: view } = await import(`${route.module_name}.js`);
     const { default: handler_factory } = await import(`${route.module_name}_handler.js`);
 // TODO:
 // If there is data for this route, it's passed in via the route.
