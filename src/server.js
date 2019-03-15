@@ -59,7 +59,7 @@ async function main() {
     
 // If we find a route, serve the route.
     if (route !== undefined) {
-// Provide server rendered content.
+// Provide server rendered data, also used for hydration.
       const props = {
 // Router parameters.
         params: route.params,
@@ -68,6 +68,7 @@ async function main() {
           data: await route.module_data()
         }
       };
+// Render the html.
       const page = html({
 // `script:` Entry point goes into <head>.
         script: route.module_name,
