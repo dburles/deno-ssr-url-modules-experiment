@@ -62,7 +62,6 @@ function client ({ routes }) {
         unmount = mount();
         props = updated_props;
       }
-// being explicit here for clarity.
       return { mount, render };
     }
   }
