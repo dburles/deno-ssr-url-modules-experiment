@@ -23,6 +23,6 @@
 // notes
 
 conventions:
-  my_component.js (universal)
-  my_component_handlers.js ← optional (client only) for attaching DOM event handlers.
-  my_component_data.js ← optional (universal) for async data fetching.
+  my_view.js (universal)
+  my_view_handlers.js ← optional (client only) for attaching DOM event handlers and any other client only state updates.
+  my_view_data.js ← optional (universal) for async data fetching.
