@@ -2,7 +2,7 @@ import create_handler from './lib/main.js';
 import home from './home.js';
 import home_data from './home_data.js';
 
-export default create_handler(home, function ({ render }) {
+export default create_handler(home, function ({ render, navigate }) {
   let count = 0;
 
   return function mount () {
