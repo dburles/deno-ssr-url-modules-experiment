@@ -32,12 +32,13 @@ function client ({ routes }) {
   subscribe(async function ({ path, params }) {
     console.log('route', { path, params });
     const route = get_route(path);
+    const module_name = '../' + route.module_name;
 // Dynamically import and render based on route.
-    const { default: handler_factory } = await import(`${route.module_name}_handler.js`);
+    const { default: handler_factory } = await import(module_name + '_handler.js');
 // TODO:
 // If there is data for this route, it's passed in via the route.
 // Rather than assuming each page has a _data.js.
-    const { default: data } = await import(`${route.module_name}_data.js`);
+    const { default: data } = await import(module_name + '_data.js');
     const handler = await handler_factory();
     props = {
       params,
