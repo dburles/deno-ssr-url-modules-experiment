@@ -17,20 +17,11 @@ export default create_handler(button, function ({ render, navigate }) {
   return function mount () {
     console.log('mount');
 
-    const elements = {
-      counter: document.getElementById('counter'),
-      next: document.getElementById('next')
-    };
-
-    console.log(elements);
-
-    elements.counter.addEventListener('click', counter_click_handler);
-    elements.next.addEventListener('click', next_click_handler);
+    document.getElementById('counter').addEventListener('click', counter_click_handler);
+    document.getElementById('next').addEventListener('click', next_click_handler);
     
     return function unmount () {
       console.log('unmount');
-      elements.counter.removeEventListener('click', counter_click_handler);
-      elements.next.removeEventListener('click', next_click_handler);
     }
   }
 });

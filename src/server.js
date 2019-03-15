@@ -5,7 +5,7 @@ const { stat, open, cwd } = Deno;
 import router from './lib/router/router.js';
 import routes from './routes-server.js';
 
-function html ({ script, body }) {
+function html ({ script, body, hydrate }) {
   return `<!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +15,9 @@ function html ({ script, body }) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="lib/main.js" type="module"></script>
   <script src="${script}" type="module"></script>
+  <script>
+  const hydrate = ${hydrate};
+  </script>
 </head>
 <body>
   <div id="root">${body}</div>
@@ -48,27 +51,30 @@ const get_route = router(routes);
 
 async function main() {
   console.log(`Server running on http://${host}:${port}`);
+
   for await (const req of s) {
     // console.log(req.method, req.url);
+
     const route = get_route(req.url);
+    
+    // If we find a route, serve the route.
     if (route !== undefined) {
-      console.log(route);
-      // client router
-      // const module = await import(route.module);
-      // console.log(module.default());
+      const props = { // Provide server rendered content.
+        // Router parameters.
+        params: route.params,
+        // Async data.
+        ...(typeof route.module_data === 'function') && {
+          data: await route.module_data()
+        }
+      };
       const page = html({
-        script: route.module_name, // entry point
-        body: route.module({ params: route.params }) // provide server rendered content
+        script: route.module_name, // Entry point.
+        body: route.module(props),
+        hydrate: JSON.stringify(props)
       });
       req.respond({ body: new TextEncoder().encode(page) });
     } else {
-    // if (req.url === '/') {
-    //   const page = html({
-    //     script: 'button.js', // entry point
-    //     body: button() // provide server rendered content
-    //   });
-    //   req.respond({ body: new TextEncoder().encode(page) });
-
+      // Otherwise, serve files.
       // XXX: SECURE
       try {
         req.respond(await serve_file(resolve_file(req.url)));

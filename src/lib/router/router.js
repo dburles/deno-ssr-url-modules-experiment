@@ -22,13 +22,10 @@ function router (routes = []) {
       const matches = route.exec(format_path(path));
       
       const route_value = routes[found_index + 1];
-      const { module_name, module } = route_value();
 
       return {
         params: matches,
-        module_name,
-        // the default export
-        module
+        ...route_value()
       };
     }
 

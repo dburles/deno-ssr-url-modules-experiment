@@ -1,6 +1,6 @@
-function button ({ count = 0, params = {} } = {}) {
+function button ({ count = 0, data, params = {} } = {}) {
   return `
-    Button One:
+    Button One: ${data}
     <button id="counter">${count}</button>
     <button id="next">Next</button>
   `;
