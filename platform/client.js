@@ -18,7 +18,7 @@ function client ({ routes }) {
     unmount = handler.mount();
 // Mount link interceptor.
     document.querySelector('body').addEventListener('click', function (e) {
-      var anchor = e.target.closest('a');
+      const anchor = e.target.closest('a');
       if (anchor !== null && anchor.host === window.location.host) {
         e.preventDefault();
         navigate(anchor.getAttribute('href'));
