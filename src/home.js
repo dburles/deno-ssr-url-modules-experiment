@@ -1,11 +1,11 @@
 import button from './bits/button.js';
 
-function home ({ count = 0, data, params = {} } = {}) {
+function home ({ count = 0, data } = {}) {
   return `
     Home: ${data}
     ${button({ id: 'counter' }, count)}
     ${button({ id: 'refetch' }, 'Refetch')}
-    <a href="/button">Next</a>
+    <a href="/page_one">Page One</a>
   `;
 }
 

@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
   }, false);
   props = hydrate;
-  console.log('DOMContentLoaded', { hydrate });
+  // console.log('DOMContentLoaded', { hydrate });
 });
 
 // Watch for route change events.
@@ -51,7 +51,7 @@ function create_handler (view, func) {
     const { navigate } = await import('./router/router-client.js');
     const mount = func({ render, navigate });
     async function render(new_props = {}) {
-      console.log('called render for ', view.name, props);
+      // console.log('called render for ', view.name, props);
       // const { default: view } = await import(module_name);
       unmount(); // Unmount.
       const updated_props = { ...props, ...new_props };

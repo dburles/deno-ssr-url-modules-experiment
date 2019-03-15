@@ -1,8 +1,8 @@
 // All these imports should be dynamic eventually.
 import home from './home.js';
-import button_two from './button_two.js';
+import page_one from './page_one.js';
 import home_data from './home_data.js';
-import button_two_data from './button_two_data.js';
+import page_one_data from './page_one_data.js';
 
 const routes = [
   /^$/, () => ({
@@ -10,10 +10,10 @@ const routes = [
     module: home,
     module_data: home_data
   }), 
-  /^button$/, () => ({
-    module_name: 'button_two.js',
-    module: button_two,
-    module_data: button_two_data
+  /^page_one$/, () => ({
+    module_name: 'page_one.js',
+    module: page_one,
+    module_data: page_one_data
   })
 ];
 

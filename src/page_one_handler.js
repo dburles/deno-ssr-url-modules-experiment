@@ -1,21 +1,16 @@
 import create_handler from './lib/main.js';
-import home from './home.js';
-import home_data from './home_data.js';
+import page_one from './page_one.js';
 
-export default create_handler(home, function ({ render }) {
+export default create_handler(page_one, function ({ render, navigate }) {
   let count = 0;
 
   async function counter_click_handler () {
     count += 1;
     render({ count });
   };
-  async function refetch_click_handler () {
-    render({ data: await home_data() });
-  }
 
   return function mount () {
     document.getElementById('counter').addEventListener('click', counter_click_handler);
-    document.getElementById('refetch').addEventListener('click', refetch_click_handler);
     
     return function unmount () {}
   }
