@@ -2,6 +2,8 @@
 - universal router (waiting on https://github.com/denoland/deno/issues/1789)
 - server rendered async data loading ✔
 - serve assets ✔
+
+// maybe
 - add a graphql client
 - make app do something interesting
 
@@ -11,17 +13,16 @@
   makes sense to do so. It may be handled within the client side _handler.
 
 // later
-- server rendered lit-html
+- server rendered lit-html?
 - eslint/prettier
 - deno environment variables?
 - minification
 
 // missing pieces
-- !!! react does not work when importing via url as a module
+- !!! react does not work when imported via url as a module
 - react does not properly support server side rendering
 
 // notes
-
 conventions:
   my_view.js (universal)
   my_view_handlers.js ← optional (client only) for attaching DOM event handlers and any other client only state updates.
