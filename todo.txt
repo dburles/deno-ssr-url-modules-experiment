@@ -2,6 +2,13 @@
 - universal router (waiting on https://github.com/denoland/deno/issues/1789)
 - server rendered async data loading ✔
 - serve assets ✔
+- add a graphql client
+- make app do something interesting
+
+- we're going back to the old days with a controller per route
+  all server rendered data is fetched at that point.
+  it's possible to also fetch data purely on the client if it
+  makes sense to do so. It may be handled within the client side _handler.
 
 // later
 - server rendered lit-html
