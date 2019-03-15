@@ -1,6 +1,6 @@
 // todo
 - universal router (waiting on https://github.com/denoland/deno/issues/1789)
-- server rendered async data loading
+- server rendered async data loading ✔
 - serve assets ✔
 
 // later
@@ -15,5 +15,6 @@
 // notes
 
 conventions:
-  my_component.js
+  my_component.js (universal)
   my_component_handlers.js ← optional (client only) for attaching DOM event handlers.
+  my_component_data.js ← optional (universal) for async data fetching.
