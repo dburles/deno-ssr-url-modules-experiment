@@ -17,16 +17,16 @@ function subscribe (fn) {
   };
 }
 
-function notify (path) {
+function publish (path) {
   resolve(path);
   subscriptions.forEach(fn => fn({ path, params }));
 }
 
-window.onpopstate = () => notify(window.location.pathname);
+window.onpopstate = () => publish(window.location.pathname);
 
 function navigate (path) {
   window.history.pushState({}, null, path);
-  notify(path);
+  publish(path);
 }
 
 export { get_route_params, set_route_params, subscribe, navigate };

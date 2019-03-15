@@ -53,29 +53,31 @@ async function main() {
   console.log(`Server running on http://${host}:${port}`);
 
   for await (const req of s) {
-    // console.log(req.method, req.url);
+// console.log(req.method, req.url);
 
     const route = get_route(req.url);
     
-    // If we find a route, serve the route.
+// If we find a route, serve the route.
     if (route !== undefined) {
-      const props = { // Provide server rendered content.
-        // Router parameters.
+// Provide server rendered content.
+      const props = {
+// Router parameters.
         params: route.params,
-        // Async data.
+// Async data.
         ...(typeof route.module_data === 'function') && {
           data: await route.module_data()
         }
       };
       const page = html({
-        script: route.module_name, // Entry point.
+// `script:` Entry point goes into <head>.
+        script: route.module_name,
         body: route.module(props),
         hydrate: JSON.stringify(props)
       });
       req.respond({ body: new TextEncoder().encode(page) });
     } else {
-      // Otherwise, serve files.
-      // XXX: SECURE
+// Otherwise, serve files.
+// XXX: SECURE?
       try {
         req.respond(await serve_file(resolve_file(req.url)));
       } catch (error) {

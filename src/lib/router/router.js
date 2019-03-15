@@ -1,6 +1,6 @@
 function router (routes = []) {
   function format_path (path) {
-    // Remove query string
+// Remove query string
     return path.substr(1).split('?')[0];
   }
 
