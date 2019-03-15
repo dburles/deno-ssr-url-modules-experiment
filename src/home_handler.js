@@ -1,4 +1,4 @@
-import create_handler from './lib/main.js';
+import { create_handler } from './client.js';
 import home from './home.js';
 import home_data from './home_data.js';
 
