@@ -1,4 +1,4 @@
-import { subscribe } from './router/router-client.js';
+import { subscribe, navigate } from './router/router-client.js';
 import routes from '../routes.js';
 import router from './router/router.js';
 
@@ -15,7 +15,15 @@ document.addEventListener('DOMContentLoaded', async function () {
   const route = get_route(window.location.pathname);
   const { default: handler_factory } = await import(`${route.module_name}_handler.js`);
   const handler = await handler_factory();
+  // Mount event handlers.
   unmount = handler.mount();
+  // Mount link interceptor.
+  document.querySelector('body').addEventListener('click', function (e) {
+    var anchor = e.target.closest('a');
+    if (anchor !== null && anchor.host === window.location.host) {
+      navigate(anchor.getAttribute('href'));
+    }
+  }, false);
   props = hydrate;
   console.log('DOMContentLoaded', { hydrate });
 });

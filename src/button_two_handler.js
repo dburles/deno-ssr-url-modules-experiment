@@ -10,15 +10,15 @@ export default create_handler(button, function ({ render, navigate }) {
     count += 1;
     render({ count });
   };
-  async function next_click_handler () {
-    navigate('/');
-  };
+  // async function next_click_handler () {
+  //   navigate('/');
+  // };
 
   return function mount () {
     console.log('mount');
 
     document.getElementById('counter').addEventListener('click', counter_click_handler);
-    document.getElementById('next').addEventListener('click', next_click_handler);
+    // document.getElementById('next').addEventListener('click', next_click_handler);
     
     return function unmount () {
       console.log('unmount');
