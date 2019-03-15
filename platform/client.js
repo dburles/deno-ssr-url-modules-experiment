@@ -1,4 +1,4 @@
-import { subscribe, navigate } from './router/router-client.js';
+import { subscribe, navigate } from './router/router_client.js';
 import router from './router/router.js';
 
 function client ({ routes }) {
