@@ -29,10 +29,4 @@ function navigate (path) {
   notify(path);
 }
 
-function router (fn) {
-  resolve = fn;
-  notify(window.location.pathname);
-}
-
-export default router;
 export { get_route_params, set_route_params, subscribe, navigate };
