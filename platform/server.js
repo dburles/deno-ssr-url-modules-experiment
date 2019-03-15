@@ -39,9 +39,7 @@ async function serve_file (filename) {
 }
 
 function resolve_file (url) {
-  const resolved = cwd() + '/src' + url;
-  console.log(resolved);
-  return resolved;
+  return cwd() + '/src' + url;
 }
 
 const host = 'localhost';
