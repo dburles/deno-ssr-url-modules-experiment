@@ -50,7 +50,7 @@ function client ({ routes }) {
 // A function used by pages to attach and handle events.
   function create_handler (view, func) {
     return async function handler () {
-      const { navigate } = await import('./router/router-client.js');
+      const { navigate } = await import('./router/router_client.js');
       const mount = func({ render, navigate });
       async function render(new_props = {}) {
         // console.log('called render for ', view.name, props);
