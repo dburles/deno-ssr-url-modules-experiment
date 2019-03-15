@@ -52,7 +52,7 @@ async function server ({ routes }) {
   const get_route = router(routes);
 
   for await (const req of s) {
-// console.log(req.method, req.url);
+    // console.log(req.method, req.url);
 
     const route = get_route(req.url);
     
