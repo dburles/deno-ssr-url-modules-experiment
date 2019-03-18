@@ -1,11 +1,10 @@
-import htm from 'https://unpkg.com/htm?module'
-import vhtml from './vhtml.js'
+import htm from 'https://unpkg.com/htm?module';
+import vhtml from './vhtml.js';
 
-function h(type, props, ...children) {
-  return { type, props, children };
-}
+// function h(type, props, ...children) {
+//   return { type, props, children };
+// }
 
-// Client.
 function createDOMElement (type, props, ...children) {
   if (typeof type === 'function') {
     return type({ ...props, children });
@@ -37,21 +36,6 @@ function createDOMElement (type, props, ...children) {
   return element;
 }
 
-// Server.
-// function vhtml(type, props, ...children) {
-//   let attributes = [];
-//   for (const prop in props) {
-//     attributes.push({ name: prop, value: props[prop] });
-//   }
-
-// //   return `<${type} ${attributes.map(({ name, value }) => `${name}="${value}"`).join(' ')}>
-// //   ${children.map(child => typeof child === 'String' ? child : vhtml(...child)).join('')}
-// // </${type}>`;
-// }
-
 const html = htm.bind(typeof document === 'undefined' ? vhtml : createDOMElement);
-// const html = htm.bind(h)
-
-// console.log(html`<h1 id=hello><p>Hello world!</p></h1>`);
 
 export default html;
