@@ -12,7 +12,11 @@ function createDOMElement (type, props, ...children) {
   }
   const element = document.createElement(type);
   for (const prop in props) {
-    element.setAttribute(prop, props[prop]);
+    if (prop === 'onClick') {
+      element.addEventListener('click', props[prop]);
+    } else {
+      element.setAttribute(prop, props[prop]);
+    }
   }
   function append (child) {
     if (child instanceof Node) {

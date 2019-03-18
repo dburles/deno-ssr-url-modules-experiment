@@ -1,8 +1,8 @@
 import html from '../lib/html.js';
 
-function button ({ id, children }) {
+function button ({ onClick, children }) {
   return html`
-    <button id="${id}">${children}</button>
+    <button onClick=${onClick}>${children}</button>
   `;
 }
 
