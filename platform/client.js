@@ -20,7 +20,7 @@ function client ({ routes }) {
       }
     }, false);
     props = {...handler.props, ...hydrate };
-    console.log('DOMContentLoaded', { hydrate, props });
+    // console.log('DOMContentLoaded', { hydrate, props });
     handler.render(props);
   });
 
@@ -50,7 +50,7 @@ function client ({ routes }) {
       const { navigate } = await import('./router/router_client.js');
       const handler_props = func({ render, navigate });
       async function render(new_props = {}) {
-        console.log('called render for ', view.name, props);
+        // console.log('called render for ', view.name, props);
         const updated_props = { ...props, ...new_props };
         const root_element = document.getElementById('root');
         root_element.replaceChild(view(updated_props), root_element.firstChild);
