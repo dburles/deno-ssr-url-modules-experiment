@@ -74,6 +74,7 @@ async function server ({ routes }) {
         body: route.module(props),
         hydrate: JSON.stringify(props)
       });
+      console.log(page);
       req.respond({ body: new TextEncoder().encode(page) });
     } else {
 // Serve platform specific files.

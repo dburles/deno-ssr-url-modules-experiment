@@ -1,5 +1,7 @@
-function button ({ id }, children) {
-  return `
+import html from '../lib/html.js';
+
+function button ({ id, children }) {
+  return html`
     <button id="${id}">${children}</button>
   `;
 }

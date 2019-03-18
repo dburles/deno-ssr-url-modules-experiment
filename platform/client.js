@@ -25,7 +25,7 @@ function client ({ routes }) {
       }
     }, false);
     props = hydrate;
-    // console.log('DOMContentLoaded', { hydrate });
+    console.log('DOMContentLoaded', { hydrate });
   });
 
 // Watch for route change events.
@@ -57,7 +57,8 @@ function client ({ routes }) {
         // const { default: view } = await import(module_name);
         unmount();
         const updated_props = { ...props, ...new_props };
-        document.getElementById('root').innerHTML = view(updated_props);
+        const root_element = document.getElementById('root');
+        root_element.replaceChild(view(updated_props), root_element.firstChild);
 // Mount new event handlers.
         unmount = mount();
         props = updated_props;
