@@ -55,7 +55,7 @@ export default function vhtml(name, attrs) {
     while (stack.length) {
       let child = stack.pop();
 
-      if (child !== undefined) {
+      if (child !== undefined && child !== null) {
         if (child.pop) {
           for (let i = child.length; i--;) stack.push(child[i]);
         } else {
