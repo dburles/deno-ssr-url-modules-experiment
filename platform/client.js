@@ -2,9 +2,6 @@ import { subscribe, navigate } from './router/router_client.js';
 import router from './router/router.js';
 
 function client ({ routes }) {
-// This represents one entire view mounted at the root element.
-  let unmount;
-
 // The props for the entire view.
   let props;
 
@@ -14,8 +11,6 @@ function client ({ routes }) {
     const route = get_route(window.location.pathname);
     const { default: handler_factory } = await import(`../${route.module_name}_handler.js`);
     const handler = await handler_factory();
-// Mount event handlers.
-    unmount = handler.mount();
 // Mount link interceptor.
     document.querySelector('body').addEventListener('click', function (e) {
       const anchor = e.target.closest('a');
@@ -24,8 +19,9 @@ function client ({ routes }) {
         navigate(anchor.getAttribute('href'));
       }
     }, false);
-    props = hydrate;
-    // console.log('DOMContentLoaded', { hydrate });
+    props = {...handler.props, ...hydrate };
+    // console.log('DOMContentLoaded', { hydrate, props });
+    handler.render(props);
   });
 
 // Watch for route change events.
@@ -40,33 +36,31 @@ function client ({ routes }) {
     const { default: data } = await import(`../${route.module_name}_data.js`);
     const handler = await handler_factory();
     props = {
+      ...handler.props,
       params,
       data: await data()
     };
 // Render into view.
-    handler.render(props); 
+    handler.render(props);
   });
 
 // A function used by pages to attach and handle events.
   function create_handler (view, func) {
     return async function handler () {
       const { navigate } = await import('./router/router_client.js');
-      const mount = func({ render, navigate });
+      const handler_props = func({ render, navigate });
       async function render(new_props = {}) {
         // console.log('called render for ', view.name, props);
-        // const { default: view } = await import(module_name);
-        unmount();
         const updated_props = { ...props, ...new_props };
-        document.getElementById('root').innerHTML = view(updated_props);
-// Mount new event handlers.
-        unmount = mount();
+        const root_element = document.getElementById('root');
+        root_element.replaceChild(view(updated_props), root_element.firstChild);
         props = updated_props;
       }
-      return { mount, render };
+      return { props: handler_props, render };
     }
   }
 
-  return { create_handler };
+  return { create_handler, /* etc */ };
 }
 
 export default client;
