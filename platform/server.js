@@ -1,6 +1,6 @@
-import { serve } from 'https://deno.land/std@v0.2.10/http/server.ts';
-import { contentType } from 'https://deno.land/std/media_types/mod.ts';
-import { extname } from 'https://deno.land/std/fs/path.ts';
+import { serve } from 'https://deno.land/std@v0.3.4/http/server.ts';
+import { contentType } from 'https://deno.land/std@v0.3.4/media_types/mod.ts';
+import { extname } from 'https://deno.land/std@v0.3.4/fs/path.ts';
 const { stat, open, cwd } = Deno;
 import router from './router/router.js';
 
